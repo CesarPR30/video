@@ -18,7 +18,8 @@ El repositorio del dashboard ya ignora la carpeta `video/`. Para abrir el video 
 
 | Versión | Proyecto | Para qué |
 |---|---|---|
-| **DaVinci Resolve** | `Demo_Factoring_DaVinci.xml`, generado con `python armar_davinci.py` | Editar y exportar gratis. Ver [GUIA_DAVINCI.md](GUIA_DAVINCI.md). |
+| **DaVinci editable** | `Demo_Factoring_Editable_DaVinci.fcpxml`, generado con `python armar_davinci_editable.py` | Zooms, títulos y ventana editables en Resolve, gratis. Ver [GUIA_DAVINCI.md](GUIA_DAVINCI.md). |
+| DaVinci renderizada | `Demo_Factoring_DaVinci.xml`, generado con `python armar_davinci.py` | Cortes y audio en Resolve; cámara y títulos dentro de los clips. |
 | Editable | `Demo_Factoring_Editable.prproj` | Trabajar a mano en Premiere. Ver [GUIA_PREMIERE.md](GUIA_PREMIERE.md). |
 | Renderizada | `Demo_Factoring_60s.prproj` | Cámara y títulos ya dentro de los clips, en Premiere. |
 
