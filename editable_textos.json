@@ -1,0 +1,132 @@
+[
+ {
+  "t": "¿A qué empresas debemos contactar?",
+  "tam": 84,
+  "y": 0.5,
+  "ini": 0.0,
+  "dur": 3.0,
+  "ent": 0.15,
+  "tipo": "tecleo",
+  "id": "T00"
+ },
+ {
+  "t": "664,548 empresas evaluadas.",
+  "tam": 80,
+  "y": 0.44,
+  "ini": 3.0,
+  "dur": 3.0,
+  "ent": 0.05,
+  "tipo": "sube",
+  "id": "T01"
+ },
+ {
+  "t": "Solo 5,000 contactos por campaña.",
+  "tam": 80,
+  "y": 0.56,
+  "ini": 3.0,
+  "dur": 3.0,
+  "ent": 1.5,
+  "tipo": "sube",
+  "id": "T02"
+ },
+ {
+  "t": "¿Cuánto?",
+  "tam": 190,
+  "y": 0.47,
+  "ini": 9.0,
+  "dur": 1.0,
+  "ent": 0,
+  "tipo": "golpe",
+  "id": "T03"
+ },
+ {
+  "t": "Base habilitada",
+  "tam": 52,
+  "y": 0.63,
+  "ini": 9.0,
+  "dur": 1.0,
+  "ent": 0.12,
+  "tipo": "sube",
+  "id": "T04"
+ },
+ {
+  "t": "¿Y si cambia?",
+  "tam": 180,
+  "y": 0.47,
+  "ini": 18.5,
+  "dur": 1.0,
+  "ent": 0,
+  "tipo": "golpe",
+  "id": "T05"
+ },
+ {
+  "t": "La capacidad comercial",
+  "tam": 52,
+  "y": 0.63,
+  "ini": 18.5,
+  "dur": 1.0,
+  "ent": 0.12,
+  "tipo": "sube",
+  "id": "T06"
+ },
+ {
+  "t": "¿Quiénes?",
+  "tam": 190,
+  "y": 0.47,
+  "ini": 32.5,
+  "dur": 1.0,
+  "ent": 0,
+  "tipo": "golpe",
+  "id": "T07"
+ },
+ {
+  "t": "Probabilidad de conversión",
+  "tam": 52,
+  "y": 0.63,
+  "ini": 32.5,
+  "dur": 1.0,
+  "ent": 0.12,
+  "tipo": "sube",
+  "id": "T08"
+ },
+ {
+  "t": "¿Por qué?",
+  "tam": 190,
+  "y": 0.47,
+  "ini": 42.0,
+  "dur": 1.0,
+  "ent": 0,
+  "tipo": "golpe",
+  "id": "T09"
+ },
+ {
+  "t": "Sustento de negocio",
+  "tam": 52,
+  "y": 0.63,
+  "ini": 42.0,
+  "dur": 1.0,
+  "ent": 0.12,
+  "tipo": "sube",
+  "id": "T10"
+ },
+ {
+  "t": "¿Cuánto?    ¿Quiénes?    ¿Por qué?",
+  "tam": 88,
+  "y": 0.42,
+  "ini": 57.5,
+  "dur": 2.5,
+  "ent": 0.1,
+  "tipo": "sube",
+  "id": "T11"
+ },
+ {
+  "t": "Campaña de factoring · DataFest 2026",
+  "tam": 38,
+  "y": 0.68,
+  "ini": 57.5,
+  "dur": 2.5,
+  "ent": 0.9,
+  "tipo": "sube",
+  "id": "T12"
+ }
+]

@@ -1,0 +1,18 @@
+# Se genera en cada computadora con armar_davinci.py (lleva rutas absolutas)
+Demo_Factoring_DaVinci.xml
+
+# Version anterior de 83 s
+clips/
+previa.mp4
+Demo_Factoring.prproj
+Demo_Factoring.xml
+
+# Respaldos, verificaciones y temporales
+Adobe Premiere Pro Auto-Save/
+Motion Graphics Template Media/
+verificacion/
+_mezcla.wav
+__pycache__/
+desktop.ini
+Thumbs.db
+.DS_Store

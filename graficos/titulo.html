@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Graficos del video</title>
+<style>
+@font-face{font-family:Blinker;font-weight:400;src:url(../../dashboard/vendor/fonts/blinker-400.woff2) format("woff2")}
+@font-face{font-family:Blinker;font-weight:600;src:url(../../dashboard/vendor/fonts/blinker-600.woff2) format("woff2")}
+@font-face{font-family:Blinker;font-weight:700;src:url(../../dashboard/vendor/fonts/blinker-700.woff2) format("woff2")}
+:root{--navy:#002D74;--deep:#001C4F;--orange:#ED590C;--ease:cubic-bezier(.2,.8,.2,1)}
+*{box-sizing:border-box}
+html,body{margin:0;width:1440px;height:810px;overflow:hidden;font-family:Blinker,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+body{background:linear-gradient(115deg,var(--deep) 0%,var(--navy) 55%,#0A4A9E 100%);position:relative}
+body.claro{background:#F5F7FA;color:var(--navy)}
+body.naranja{background:linear-gradient(100deg,var(--orange),#F47A2F)}
+body.transparente{background:transparent}
+canvas{position:absolute;inset:0}
+.escena{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 110px}
+.prompt{min-width:880px;background:#fff;color:var(--navy);border-radius:22px;padding:34px 42px;text-align:left;font-size:44px;font-weight:600;line-height:1.2;box-shadow:0 30px 80px rgba(0,10,40,.45);animation:sube .7s var(--ease) both}
+.caret{display:inline-block;width:3px;height:1em;margin-left:3px;vertical-align:-.12em;background:var(--orange);animation:parpadeo 1s steps(2) infinite}
+.linea{font-size:82px;font-weight:700;line-height:1.08;letter-spacing:-.01em;animation:sube .55s var(--ease) both}
+.linea b{color:#FF9A5F;font-weight:700}
+.linea+.linea{margin-top:18px}
+.seccion{font-size:150px;font-weight:700;letter-spacing:-.02em;line-height:1;animation:golpe .5s var(--ease) both}
+.sub{font-size:36px;font-weight:600;opacity:.85;margin-top:14px;animation:sube .5s .12s var(--ease) both}
+.ejes{display:flex;gap:44px;font-size:64px;font-weight:700}
+.ejes span{animation:sube .55s var(--ease) both}
+.ejes span:nth-child(2){animation-delay:.25s}.ejes span:nth-child(3){animation-delay:.5s}
+.marca{margin-top:46px;display:flex;align-items:center;gap:24px;font-size:28px;font-weight:600;color:#C6D5EC;animation:sube .6s .9s var(--ease) both}
+.marca img{height:52px;width:auto;display:block;background:#fff;padding:9px 16px;border-radius:12px;box-sizing:content-box}
+@keyframes sube{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes golpe{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+@keyframes parpadeo{50%{opacity:0}}
+.aviso{position:absolute;right:26px;bottom:22px;display:inline-flex;align-items:center;gap:8px;background:rgba(0,28,79,.78);color:#fff;font-size:15px;font-weight:600;padding:6px 13px;border-radius:999px}
+.aviso i{width:8px;height:8px;border-radius:50%;background:#FF8A4A}
+</style>
+</head>
+<body>
+<canvas id="lluvia" width="1440" height="810"></canvas>
+<div class="escena" id="e"></div>
+<script src="../../dashboard/inputs/meta.js"></script>
+<script src="../../dashboard/inputs/resumen.js"></script>
+<script>
+const q = new URLSearchParams(location.search), tipo = q.get("tipo"), e = document.getElementById("e");
+const { meta, resumen } = window.DASH, n = v => v.toLocaleString("en-US");
+const lluvia = c => {
+  const x = c.getContext("2d"), col = Array.from({ length: 43 }, (_, i) => ({ x: i * 34 + 8, y: Math.random() * 810, v: .3 + Math.random() * .6 }));
+  (function paso() {
+    requestAnimationFrame(paso); x.clearRect(0, 0, 1440, 810);
+    x.font = "14px Blinker,sans-serif"; x.fillStyle = "rgba(160,200,255,.14)";
+    for (const k of col) {
+      for (let i = 0; i < 7; i++) x.fillText((Math.floor(k.y / 30) + i * 7 + k.x) % 3 ? "1" : "0", k.x, (k.y + i * 22) % 850);
+      k.y = (k.y + k.v) % 850;
+    }
+  })();
+};
+const tipear = (nodo, txt, cada, listo) => {
+  const t = document.createTextNode(""), c = document.createElement("span"); c.className = "caret";
+  nodo.append(t, c); let i = 0;
+  const f = () => { t.data = txt.slice(0, ++i); if (i < txt.length) setTimeout(f, cada); else if (listo) listo(); };
+  setTimeout(f, 400);
+};
+const linea = (html, ms) => { const d = document.createElement("div"); d.className = "linea"; d.innerHTML = html; d.style.animationDelay = `${ms}ms`; e.append(d); };
+
+if (tipo === "pregunta") {
+  lluvia(document.getElementById("lluvia"));
+  const p = document.createElement("div"); p.className = "prompt"; e.append(p);
+  tipear(p, "¿A qué empresas debemos contactar?", 42);
+} else if (tipo === "cifras") {
+  lluvia(document.getElementById("lluvia"));
+  linea(`<b>${n(resumen.embudo.evaluables)}</b> empresas evaluadas.`, 80);
+  linea(`Solo <b>${n(meta.supuestos.capacidad_contactos)}</b> contactos por campaña.`, 1500);
+} else if (tipo === "seccion") {
+  document.body.className = q.get("c") || "";
+  e.innerHTML = `<div class="seccion">${q.get("t")}</div>` + (q.get("s") ? `<div class="sub">${q.get("s")}</div>` : "");
+} else if (tipo === "cierre") {
+  lluvia(document.getElementById("lluvia"));
+  e.innerHTML = `<div class="ejes"><span>¿Cuánto?</span><span>¿Quiénes?</span><span>¿Por qué?</span></div>
+    <div class="marca"><img src="logo-bcp.png" alt="BCP"><span>Campaña de factoring · DataFest 2026</span></div>`;
+} else if (tipo === "fondo") {
+  document.body.className = q.get("c") || "";
+  if (q.get("c") !== "naranja") lluvia(document.getElementById("lluvia"));
+} else if (tipo === "logo") {
+  document.body.className = "transparente"; document.getElementById("lluvia").remove();
+  e.innerHTML = '<div class="marca" style="animation:none;margin:0"><img src="logo-bcp.png" alt="BCP"></div>';
+} else if (tipo === "aviso") {
+  document.body.className = "transparente"; document.getElementById("lluvia").remove();
+  e.remove(); document.body.insertAdjacentHTML("beforeend", '<div class="aviso"><i></i>Cifras ilustrativas: predicciones simuladas</div>');
+}
+</script>
+</body>
+</html>
